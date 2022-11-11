@@ -1,11 +1,12 @@
 using BuberDinner.Application;
-using BuberDinner.Application.Services.Authentication;
+using BuberDinner.Infrastructure;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddControllers();
 
-    builder.Services.AddApplication();
+    builder.Services.AddApplication()
+           .AddInfrastructure(builder.Configuration);
 }
 
 WebApplication app = builder.Build();
