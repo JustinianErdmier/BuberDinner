@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BuberDinner.WebUI.Controllers;
 
-[ApiController, Route("auth")]
+[ ApiController, Route("auth") ]
 public class AuthenticationController : ControllerBase
 {
     private readonly IAuthenticationService _authenticationService;
@@ -20,22 +20,22 @@ public class AuthenticationController : ControllerBase
     /// <inheritdoc />
     public AuthenticationController(IAuthenticationService authenticationService) => _authenticationService = authenticationService;
 
-    [HttpPost("register")]
+    [ HttpPost("register") ]
     public IActionResult Register(RegisterRequest request)
     {
         AuthenticationResult result = _authenticationService.Register(request.FirstName, request.LastName, request.Email, request.Password);
-        
-        var response = new AuthenticationResult(result.Id, result.FirstName, result.LastName, result.Email, result.Token);
-        
+
+        var response = new AuthenticationResponse(result.User.Id, result.User.FirstName, result.User.LastName, result.User.Email, result.Token);
+
         return Ok(response);
     }
-    
-    [HttpPost("login")]
+
+    [ HttpPost("login") ]
     public IActionResult Login(LoginRequest request)
     {
         AuthenticationResult result = _authenticationService.Login(request.Email, request.Password);
 
-        var response = new AuthenticationResult(result.Id, result.FirstName, result.LastName, result.Email, result.Token);
+        var response = new AuthenticationResponse(result.User.Id, result.User.FirstName, result.User.LastName, result.User.Email, result.Token);
 
         return Ok(response);
     }
