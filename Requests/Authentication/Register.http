@@ -1,0 +1,9 @@
+﻿POST https://localhost:7059/auth/register
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@email.com",
+    "password": "password123"
+}
