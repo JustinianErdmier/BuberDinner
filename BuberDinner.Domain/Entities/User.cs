@@ -1,12 +1,21 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------------------
 // Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.Application > AuthenticationResult.cs
+// BuberDinner > BuberDinner.Domain > User.cs
 // Created: 11 11, 2022
 // Modified: 11 11, 2022
 // ---------------------------------------------------------------------------------------------------------------------------------
 
-using BuberDinner.Domain.Entities;
+namespace BuberDinner.Domain.Entities;
 
-namespace BuberDinner.Application.Services.Authentication;
+public class User
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
 
-public record AuthenticationResult(User User, string Token);
+    public string FirstName { get; set; } = null!;
+    
+    public string LastName { get; set; } = null!;
+    
+    public string Email { get; set; } = null!;
+    
+    public string Password { get; set; } = null!;
+}
