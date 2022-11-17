@@ -16,11 +16,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentic
 	ProjectSection(SolutionItems) = preProject
 		Requests\Authentication\Register.http = Requests\Authentication\Register.http
 		Requests\Authentication\Login.http = Requests\Authentication\Login.http
+		Requests\Authentication\http-client.env.json = Requests\Authentication\http-client.env.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{5A86BD1C-E55B-474A-AFB3-81667BDDC9FF}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{9814C243-28AF-424E-A813-75231E6F8E48}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Api.md = Documentation\Api.md
+		Documentation\http-client.env.json = Documentation\http-client.env.json
+		Documentation\DomainModels.md = Documentation\DomainModels.md
 	EndProjectSection
 EndProject
 Global
