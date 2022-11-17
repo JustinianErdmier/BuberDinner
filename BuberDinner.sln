@@ -11,12 +11,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Contracts", "BuberDinner.Contracts\BuberDinner.Contracts.csproj", "{61828CBC-ADB3-4533-8F27-838FFDFA582A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{C6B7ABD2-4CC6-466D-93EF-030F6F9A62FA}"
+	ProjectSection(SolutionItems) = preProject
+		Requests\http-client.env.json = Requests\http-client.env.json
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{9AA6C949-5BD2-43D0-B5B3-18600596ACA2}"
 	ProjectSection(SolutionItems) = preProject
 		Requests\Authentication\Register.http = Requests\Authentication\Register.http
 		Requests\Authentication\Login.http = Requests\Authentication\Login.http
-		Requests\Authentication\http-client.env.json = Requests\Authentication\http-client.env.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{5A86BD1C-E55B-474A-AFB3-81667BDDC9FF}"
@@ -27,7 +29,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{9814C243-28AF-424E-A813-75231E6F8E48}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Api.md = Documentation\Api.md
-		Documentation\http-client.env.json = Documentation\http-client.env.json
 		Documentation\DomainModels.md = Documentation\DomainModels.md
 	EndProjectSection
 EndProject

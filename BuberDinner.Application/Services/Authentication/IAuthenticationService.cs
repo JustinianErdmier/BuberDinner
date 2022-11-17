@@ -5,11 +5,13 @@
 // Modified: 11 11, 2022
 // ---------------------------------------------------------------------------------------------------------------------------------
 
+using ErrorOr;
+
 namespace BuberDinner.Application.Services.Authentication;
 
 public interface IAuthenticationService
 {
-    AuthenticationResult Register(string firstName, string lastName, string email, string password);
-    
-    AuthenticationResult Login(string email, string password);
+    ErrorOr<AuthenticationResult> Register(string firstName, string lastName, string email, string password);
+
+    ErrorOr<AuthenticationResult> Login(string email, string password);
 }
