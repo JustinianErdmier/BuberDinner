@@ -1,7 +1,7 @@
-﻿POST https://localhost:7059/auth/login
+﻿POST {{host}}/auth/login
 Content-Type: application/json
 
 {
-  "email":     "john.doe@email.com",
-  "password":  "password123"
+  "email":    "john.doe@email.com",
+  "password": "password123"
 }
