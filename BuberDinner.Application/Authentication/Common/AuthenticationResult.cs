@@ -1,17 +1,12 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------------------
 // Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.Application > IAuthenticationService.cs
+// BuberDinner > BuberDinner.Application > AuthenticationResult.cs
 // Created: 11 11, 2022
 // Modified: 11 11, 2022
 // ---------------------------------------------------------------------------------------------------------------------------------
 
-using ErrorOr;
+using BuberDinner.Domain.Entities;
 
-namespace BuberDinner.Application.Services.Authentication;
+namespace BuberDinner.Application.Authentication.Common;
 
-public interface IAuthenticationService
-{
-    ErrorOr<AuthenticationResult> Register(string firstName, string lastName, string email, string password);
-
-    ErrorOr<AuthenticationResult> Login(string email, string password);
-}
+public record AuthenticationResult(User User, string Token);

@@ -5,9 +5,7 @@
 // Modified: 17 11, 2022
 // ---------------------------------------------------------------------------------------------------------------------------------
 
-using System.Net;
-
-namespace BuberDinner.Application.Common.Errors;
+// namespace BuberDinner.Application.Common.Errors;
 
 // public class DuplicateEmailError : FluentResults.IError
 // {

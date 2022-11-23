@@ -1,12 +1,14 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------------------
 // Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.Application > AuthenticationResult.cs
-// Created: 11 11, 2022
-// Modified: 11 11, 2022
+// BuberDinner > BuberDinner.Application > LoginQuery.cs
+// Created: 23 11, 2022
+// Modified: 23 11, 2022
 // ---------------------------------------------------------------------------------------------------------------------------------
 
-using BuberDinner.Domain.Entities;
+using BuberDinner.Application.Authentication.Common;
 
-namespace BuberDinner.Application.Services.Authentication;
+using MediatR;
 
-public record AuthenticationResult(User User, string Token);
+namespace BuberDinner.Application.Authentication.Queries.Login;
+
+public record LoginQuery(string Email, string Password) : IRequest<ErrorOr<AuthenticationResult>>;
