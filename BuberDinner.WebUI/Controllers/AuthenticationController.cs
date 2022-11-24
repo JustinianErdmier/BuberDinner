@@ -13,6 +13,8 @@ using BuberDinner.Domain.Common.Errors;
 
 using ErrorOr;
 
+using MapsterMapper;
+
 using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
@@ -25,32 +27,35 @@ public class AuthenticationController : ApiController
 {
     private readonly ISender _mediator;
 
+    private readonly IMapper _mapper;
+
     /// <inheritdoc />
-    public AuthenticationController(ISender mediator) => _mediator = mediator;
+    public AuthenticationController(ISender mediator, IMapper mapper)
+    {
+        _mediator = mediator;
+        _mapper   = mapper;
+    }
 
     [ HttpPost("register") ]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
-        ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password));
+        ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(_mapper.Map<RegisterCommand>(request));
 
-        return registerResult.Match(result => Ok(MapToAuthResponse(result)),
+        return registerResult.Match(result => Ok(_mapper.Map<AuthenticationResponse>(result)),
                                     Problem);
     }
 
     [ HttpPost("login") ]
     public async Task<IActionResult> Login(LoginRequest request)
     {
-        ErrorOr<AuthenticationResult> loginResult = await _mediator.Send(new LoginQuery(request.Email, request.Password));
+        ErrorOr<AuthenticationResult> loginResult = await _mediator.Send(_mapper.Map<LoginQuery>(request));
 
         if (loginResult.IsError && loginResult.FirstError == Errors.Authentication.InvalidCredentials)
         {
             return Problem(statusCode: StatusCodes.Status401Unauthorized, title: loginResult.FirstError.Description);
         }
 
-        return loginResult.Match(result => Ok(MapToAuthResponse(result)),
+        return loginResult.Match(result => Ok(_mapper.Map<AuthenticationResponse>(result)),
                                  Problem);
     }
-
-    private static AuthenticationResponse MapToAuthResponse(AuthenticationResult result)
-        => new (result.User.Id, result.User.FirstName, result.User.LastName, result.User.Email, result.Token);
 }

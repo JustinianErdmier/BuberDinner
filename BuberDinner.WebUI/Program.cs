@@ -1,5 +1,6 @@
 using BuberDinner.Application;
 using BuberDinner.Infrastructure;
+using BuberDinner.WebUI;
 using BuberDinner.WebUI.Common.Errors;
 
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -7,12 +8,9 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 {
-    builder.Services.AddApplication()
+    builder.Services.AddWebUI()
+           .AddApplication()
            .AddInfrastructure(builder.Configuration);
-
-    builder.Services.AddControllers();
-
-    builder.Services.AddSingleton<ProblemDetailsFactory, BuberDinnerProblemDetailsFactory>();
 }
 
 WebApplication app = builder.Build();
