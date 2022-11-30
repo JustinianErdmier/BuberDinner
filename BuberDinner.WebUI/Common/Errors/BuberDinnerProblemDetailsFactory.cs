@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.WebUI > BuberDinnerProblemDetailsFactory.cs
-// Created: 11 11, 2022
-// Modified: 11 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 using BuberDinner.WebUI.Common.Http;
 
@@ -22,9 +15,11 @@ public sealed class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
 {
     private readonly ApiBehaviorOptions _options;
 
-    public BuberDinnerProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) => _options = options.Value ?? throw new ArgumentNullException(nameof(options));
+    public BuberDinnerProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) =>
+        _options = options.Value ?? throw new ArgumentNullException(nameof(options));
 
-    public override ProblemDetails CreateProblemDetails(HttpContext httpContext, int? statusCode = null, string? title = null, string? type = null, string? detail = null,
+    public override ProblemDetails CreateProblemDetails(HttpContext httpContext,     int?    statusCode = null, string? title = null,
+                                                        string?     type     = null, string? detail     = null,
                                                         string?     instance = null)
     {
         statusCode ??= 500;
@@ -35,7 +30,7 @@ public sealed class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
             Title    = title,
             Type     = type,
             Detail   = detail,
-            Instance = instance,
+            Instance = instance
         };
 
         ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
@@ -43,20 +38,20 @@ public sealed class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
         return problemDetails;
     }
 
-    public override ValidationProblemDetails CreateValidationProblemDetails(HttpContext httpContext,     ModelStateDictionary modelStateDictionary, int?    statusCode = null,
-                                                                            string?     title    = null, string?              type = null,          string? detail     = null,
-                                                                            string?     instance = null)
+    public override ValidationProblemDetails CreateValidationProblemDetails(HttpContext          httpContext,
+                                                                            ModelStateDictionary modelStateDictionary,
+                                                                            int?                 statusCode = null,
+                                                                            string?              title      = null, string? type = null,
+                                                                            string?              detail     = null,
+                                                                            string?              instance   = null)
     {
-        if (modelStateDictionary is null)
-        {
-            throw new ArgumentNullException(nameof(modelStateDictionary));
-        }
+        if (modelStateDictionary is null) throw new ArgumentNullException(nameof(modelStateDictionary));
 
         statusCode ??= 400;
 
         var problemDetails = new ValidationProblemDetails(modelStateDictionary)
         {
-            Status = statusCode, Type = type, Detail = detail, Instance = instance,
+            Status = statusCode, Type = type, Detail = detail, Instance = instance
         };
 
         if (title != null)
@@ -82,14 +77,9 @@ public sealed class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
 
         string? traceId = Activity.Current?.Id ?? httpContext?.TraceIdentifier;
 
-        if (traceId is not null)
-        {
-            problemDetails.Extensions["traceId"] = traceId;
-        }
+        if (traceId is not null) problemDetails.Extensions["traceId"] = traceId;
 
         if (httpContext?.Items[HttpContextItemKeys.Errors] is IEnumerable<Error> errors)
-        {
             problemDetails.Extensions.Add("errorCodes", errors.Select(e => e.Code));
-        }
     }
 }

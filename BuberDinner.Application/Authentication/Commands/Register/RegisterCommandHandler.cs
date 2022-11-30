@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.Application > RegisterCommandHandler.cs
-// Created: 23 11, 2022
-// Modified: 23 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using BuberDinner.Application.Authentication.Common;
+﻿using BuberDinner.Application.Authentication.Common;
 using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Domain.Common.Errors;
@@ -31,10 +24,12 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
     public Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
         // Check if user already exists
-        if (_userRepository.GetUserByEmail(command.Email) is not null) { return Task.FromResult<ErrorOr<AuthenticationResult>>(Errors.User.DuplicateEmail); }
+        if (_userRepository.GetUserByEmail(command.Email) is not null)
+            return Task.FromResult<ErrorOr<AuthenticationResult>>(Errors.User.DuplicateEmail);
 
         // Create user
-        User user = new () { FirstName = command.FirstName, LastName = command.LastName, Email = command.Email, Password = command.Password };
+        User user = new ()
+            { FirstName = command.FirstName, LastName = command.LastName, Email = command.Email, Password = command.Password };
 
         // Save user
         _userRepository.Add(user);

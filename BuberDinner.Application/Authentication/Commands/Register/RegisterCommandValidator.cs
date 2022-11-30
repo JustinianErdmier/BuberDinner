@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.Application > RegisterCommandValidator.cs
-// Created: 23 11, 2022
-// Modified: 23 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace BuberDinner.Application.Authentication.Commands.Register;
 

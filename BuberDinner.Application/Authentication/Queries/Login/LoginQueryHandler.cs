@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.Application > LoginQueryHandler.cs
-// Created: 23 11, 2022
-// Modified: 23 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using BuberDinner.Application.Authentication.Common;
+﻿using BuberDinner.Application.Authentication.Common;
 using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Domain.Common.Errors;
@@ -31,15 +24,11 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<Authenticat
     {
         // Check if user exists
         if (_userRepository.GetUserByEmail(query.Email) is not { } user)
-        {
             return Task.FromResult<ErrorOr<AuthenticationResult>>(Errors.Authentication.InvalidCredentials);
-        }
 
         // Check if password is correct
         if (! user.Password.Equals(query.Password))
-        {
             return Task.FromResult<ErrorOr<AuthenticationResult>>(Errors.Authentication.InvalidCredentials);
-        }
 
         // Generate JWT
         string token = _jwtTokenGenerator.GenerateToken(user);

@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.Application > LoginQueryValidator.cs
-// Created: 30 11, 2022
-// Modified: 30 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace BuberDinner.Application.Authentication.Queries.Login;
 

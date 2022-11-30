@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.WebUI > AuthenticationMappingConfig.cs
-// Created: 23 11, 2022
-// Modified: 23 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using BuberDinner.Application.Authentication.Commands.Register;
+﻿using BuberDinner.Application.Authentication.Commands.Register;
 using BuberDinner.Application.Authentication.Common;
 using BuberDinner.Application.Authentication.Queries.Login;
 using BuberDinner.Contracts.Authentication;

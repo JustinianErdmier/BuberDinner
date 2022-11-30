@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.Application > ValidationBehaviors.cs
-// Created: 23 11, 2022
-// Modified: 23 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
 
 using MediatR;
@@ -24,15 +17,14 @@ public class AbstractValidationBehavior<TRequest, TResponse> : IPipelineBehavior
     public async Task<TResponse> Handle(TRequest          request, RequestHandlerDelegate<TResponse> next,
                                         CancellationToken cancellationToken)
     {
-        if (_validator is null) { return await next(); }
+        if (_validator is null) return await next();
 
         ValidationResult validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
-        if (validationResult.IsValid)
-        {
-            return await next();
-        }
+        if (validationResult.IsValid) return await next();
 
-        return (dynamic) validationResult.Errors.ConvertAll(validationFailure => Error.Validation(validationFailure.PropertyName, validationFailure.ErrorMessage));
+        return (dynamic) validationResult.Errors.ConvertAll(validationFailure =>
+                                                                Error.Validation(validationFailure.PropertyName,
+                                                                                 validationFailure.ErrorMessage));
     }
 }

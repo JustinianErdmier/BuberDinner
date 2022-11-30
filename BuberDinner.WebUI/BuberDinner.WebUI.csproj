@@ -4,18 +4,18 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-      <UserSecretsId>327337f5-fc89-4c8e-b5e4-475e18641de8</UserSecretsId>
-  </PropertyGroup>
+        <UserSecretsId>327337f5-fc89-4c8e-b5e4-475e18641de8</UserSecretsId>
+    </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BuberDinner.Application\BuberDinner.Application.csproj" />
-      <ProjectReference Include="..\BuberDinner.Contracts\BuberDinner.Contracts.csproj" />
-      <ProjectReference Include="..\BuberDinner.Infrastructure\BuberDinner.Infrastructure.csproj" />
+        <ProjectReference Include="..\BuberDinner.Application\BuberDinner.Application.csproj"/>
+        <ProjectReference Include="..\BuberDinner.Contracts\BuberDinner.Contracts.csproj"/>
+        <ProjectReference Include="..\BuberDinner.Infrastructure\BuberDinner.Infrastructure.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Mapster" Version="7.3.0" />
-      <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
+        <PackageReference Include="Mapster" Version="7.3.0"/>
+        <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0"/>
     </ItemGroup>
 
 </Project>

@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.WebUI > ApiController.cs
-// Created: 17 11, 2022
-// Modified: 17 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using BuberDinner.WebUI.Common.Http;
+﻿using BuberDinner.WebUI.Common.Http;
 
 using ErrorOr;
 
@@ -19,9 +12,9 @@ public class ApiController : ControllerBase
 {
     protected IActionResult Problem(List<Error> errors)
     {
-        if (! errors.Any()) { return Problem(); }
+        if (! errors.Any()) return Problem();
 
-        if (errors.All(e => e.Type == ErrorType.Validation)) { return ValidationProblem(errors); }
+        if (errors.All(e => e.Type == ErrorType.Validation)) return ValidationProblem(errors);
 
         HttpContext.Items[HttpContextItemKeys.Errors] = errors;
 

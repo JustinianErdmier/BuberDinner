@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.WebUI > ErrorsController.cs
-// Created: 11 11, 2022
-// Modified: 11 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using BuberDinner.Application.Common.Errors;
+﻿using BuberDinner.Application.Common.Errors;
 
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
@@ -22,8 +15,9 @@ public class ErrorsController : ControllerBase
 
         (int statusCode, string message) = exception switch
                                            {
-                                               IServiceException serviceException => ((int)serviceException.StatusCode, serviceException.ErrorMessage),
-                                               _                       => (StatusCodes.Status500InternalServerError, "An unexpected error occurred")
+                                               IServiceException serviceException => ((int) serviceException.StatusCode,
+                                                                                      serviceException.ErrorMessage),
+                                               _ => (StatusCodes.Status500InternalServerError, "An unexpected error occurred")
                                            };
 
         return Problem(statusCode: statusCode, detail: message);

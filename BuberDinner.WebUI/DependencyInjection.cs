@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.WebUI > DependencyInjection.cs
-// Created: 23 11, 2022
-// Modified: 23 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using BuberDinner.WebUI.Common.Errors;
+﻿using BuberDinner.WebUI.Common.Errors;
 using BuberDinner.WebUI.Common.Mapping;
 
 using Microsoft.AspNetCore.Mvc.Infrastructure;

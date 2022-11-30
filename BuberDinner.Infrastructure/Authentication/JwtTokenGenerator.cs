@@ -1,11 +1,4 @@
-﻿// ---------------------------------------------------------------------------------------------------------------------------------
-// Copyright (c) Lieberman Technologies, LLC. All rights reserved.
-// BuberDinner > BuberDinner.Infrastructure > JwtTokenGenerator.cs
-// Created: 11 11, 2022
-// Modified: 11 11, 2022
-// ---------------------------------------------------------------------------------------------------------------------------------
-
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
@@ -43,10 +36,10 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             new Claim(JwtRegisteredClaimNames.Sub,        user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.GivenName,  user.FirstName),
             new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
-            new Claim(JwtRegisteredClaimNames.Jti,        Guid.NewGuid().ToString()),
+            new Claim(JwtRegisteredClaimNames.Jti,        Guid.NewGuid().ToString())
         };
 
-        var securityToken = new JwtSecurityToken(issuer: _jwtSettings.Issuer, audience: _jwtSettings.Audience,
+        var securityToken = new JwtSecurityToken(_jwtSettings.Issuer, _jwtSettings.Audience,
                                                  expires: _dateTimeProvider.Now.AddMinutes(_jwtSettings.ExpiryInMinutes).DateTime,
                                                  claims: claims,
                                                  signingCredentials: signingCredentials);
